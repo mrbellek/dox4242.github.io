@@ -640,15 +640,7 @@ var Artifacts = [
     random: function(save, e) {
       e = !e?save.excavations:e;
       return e / 1000000;
-    }/*,
-    required: function(value, save, n) {
-      if (Math.ceil(value * 1000000) < n + save.excavations)
-      console.log(value, Math.ceil(value * 1000000), n);
-      return Math.max(1, Math.ceil(value * 1000000) - n) + save.excavations;
-    },
-    display: function(value) {
-      return value + ' Excavation' + (value>1?'s':'') + ' (must excavate to this point with no eligible artifacts)';
-    }*/
+    }
   },
   {
     name: 'Duskstone',
@@ -661,14 +653,23 @@ var Artifacts = [
     random: function(save, e) {
       e = !e?save.excavations:e;
       return e / 1000000;
-    }/*,
-    required: function(value, save, n) {
-      if (Math.ceil(value * 1000000) < n + save.excavations)
-      console.log(value, Math.ceil(value * 1000000), n);
-      return Math.max(1, Math.ceil(value * 1000000) - n) + save.excavations;
-    },
-    display: function(value) {
-      return value + ' Excavation' + (value>1?'s':'') + ' (must excavate to this point with no eligible artifacts)';
-    }*/
-  }
+    }
+  },
+  {
+    name: 'Ancient Heirloom',
+    id: 237,
+    random: function(save, l) {
+      l = !l?save.lineage_levels:l;
+      console.log('heirloom test:',l)
+      return l / 20;
+    }
+  }/*,
+  {
+    name: 'Obsidian Shard',
+    id: 240
+  },
+  {
+    name: 'Know Your Enemy, Part 2',
+    id: 242
+  }*/
 ];
