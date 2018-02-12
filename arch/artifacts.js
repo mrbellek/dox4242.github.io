@@ -696,5 +696,126 @@ var Artifacts = [
     random: function(save) {
       return 0.1
     }
-  }
+  },
+    {
+        name: 'Ancestral Hourglass',
+        id: 284,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        }
+        //chance: x / 10QA where x is FC find chance
+    },
+    {
+        name: 'Silk Cloth',
+        id: 281,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        excav: 3000,
+        fixed: function(save) {
+            //wizard tower is a good building
+            return save.alignment == 1;
+        },
+        random: function(save) {
+        //chance: ((x - 10k / 200k) % where x is wizard towers built
+          return (util.save.building_count(save, 25) - 10000) / 20000000;
+        },
+        display: function(value) {
+          return value + ' Wizard Tower' + (value>1?'s':'');
+        }
+    },
+    {
+        name: 'Raw Emerald',
+        id: 280,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        //chance: (2 * x^2) / 10k % where x is non-ruby excav resets this game
+        excav: 3000
+    },
+    {
+        name: 'Fossilized Wing',
+        id: 277,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        excav: 3000
+        //chance: (x / 25920k (300 days)) % where x is angel time (total) in seconds
+    },
+    {
+        name: 'Spiked Whip',
+        id: 282,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        fixed: function(save) {
+            //slave pen is an evil building
+            return save.alignment == 2;
+        },
+        excav: 3000,
+        random: function(save) {
+        //chance: ((x - 10k) / 300k)% where x is slave pens built
+            return (util.save.building_count(save, 21) - 10000) / 30000000;
+        },
+        display: function(value) {
+          return value + ' Slave Pen' + (value>1?'s':'');
+        }
+    },
+    {
+        name: 'Dusty Coffin',
+        id: 276,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        //chance: 1 / (30 + x^1.75)) % where x is time in seconds this game
+        excav: 3000
+    },
+    {
+        name: 'Crystallized Lava',
+        id: 275,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        excav: 3000,
+        random: function(save) {
+        //chance: ((x - 10k) / 200k) % where x is halls of legends built
+            return (util.save.building_count(save, 10) - 10000) / 20000000;
+        },
+        display: function(value) {
+          return value + ' Hall' + (value>1?'s':'') + ' of Legend';
+        }
+    },
+    {
+        name: 'Titan Helmet',
+        id: 283,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        //chance: (( x^2) / 5e9) % where x is royal exchanges (including RE count multipliers)
+        excav: 3000
+    },
+    {
+        name: 'Branch of the Life Tree',
+        id: 274,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        excav: 3000,
+        random: function(save) {
+        //chance: (( x^3 ) / 2e6) % where x is druid lineage level
+            return Math.pow(save.lineageLevels[7].lev, 3) / 200000000;
+        },
+        display: function(value) {
+            return value + ' Druid Lineage level' + (value>1?'s':'');
+        }
+    },
+    {
+        name: 'Nightmare Figment',
+        id: 278,
+        fixed: function(save) {
+            return save.reincarnation >= 100;
+        },
+        //chance: (( x^1.5 ) / 2e7))% where x is headstart time in seconds
+        excav: 3000
+    }
 ];
