@@ -709,13 +709,9 @@ var Artifacts = [
         name: 'Silk Cloth',
         id: 281,
         fixed: function(save) {
-            return save.reincarnation >= 100;
+            return save.reincarnation >= 100 && save.alignment == 1 && save.faction == 0;
         },
         excav: 3000,
-        fixed: function(save) {
-            //wizard tower is a good building
-            return save.alignment == 1;
-        },
         random: function(save) {
         //chance: ((x - 10k / 200k) % where x is wizard towers built
           return (util.save.building_count(save, 25) - 10000) / 20000000;
@@ -728,7 +724,7 @@ var Artifacts = [
         name: 'Raw Emerald',
         id: 280,
         fixed: function(save) {
-            return save.reincarnation >= 100;
+            return save.reincarnation >= 100 && save.faction == 1;
         },
         //chance: (2 * x^2) / 10k % where x is non-ruby excav resets this game
         excav: 3000
@@ -737,20 +733,19 @@ var Artifacts = [
         name: 'Fossilized Wing',
         id: 277,
         fixed: function(save) {
-            return save.reincarnation >= 100;
+            return save.reincarnation >= 100 && save.faction == 2;
         },
-        excav: 3000
+        excav: 3000,
+        random: function(save) {
         //chance: (x / 25920k (300 days)) % where x is angel time (total) in seconds
+            return save.stats[1].statsRei / 2592000000;
+        }
     },
     {
         name: 'Spiked Whip',
         id: 282,
         fixed: function(save) {
-            return save.reincarnation >= 100;
-        },
-        fixed: function(save) {
-            //slave pen is an evil building
-            return save.alignment == 2;
+            return save.reincarnation >= 100 && save.alignment == 2 && save.faction == 3;
         },
         excav: 3000,
         random: function(save) {
@@ -765,16 +760,19 @@ var Artifacts = [
         name: 'Dusty Coffin',
         id: 276,
         fixed: function(save) {
-            return save.reincarnation >= 100;
+            return save.reincarnation >= 100 && save.faction == 4;
         },
+        random: function(save) {
         //chance: 1 / (30 + x^1.75)) % where x is time in seconds this game
+            return 1 / ((30 + Math.pow(save.stats[1].stats, 1.75)) * 100);
+        },
         excav: 3000
     },
     {
         name: 'Crystallized Lava',
         id: 275,
         fixed: function(save) {
-            return save.reincarnation >= 100;
+            return save.reincarnation >= 100 && save.faction == 5;
         },
         excav: 3000,
         random: function(save) {
@@ -789,7 +787,7 @@ var Artifacts = [
         name: 'Titan Helmet',
         id: 283,
         fixed: function(save) {
-            return save.reincarnation >= 100;
+            return save.reincarnation >= 100 && save.faction == 6;
         },
         //chance: (( x^2) / 5e9) % where x is royal exchanges (including RE count multipliers)
         excav: 3000
@@ -798,7 +796,7 @@ var Artifacts = [
         name: 'Branch of the Life Tree',
         id: 274,
         fixed: function(save) {
-            return save.reincarnation >= 100;
+            return save.reincarnation >= 100 && save.faction == 7;
         },
         excav: 3000,
         random: function(save) {
@@ -813,7 +811,7 @@ var Artifacts = [
         name: 'Nightmare Figment',
         id: 278,
         fixed: function(save) {
-            return save.reincarnation >= 100;
+            return save.reincarnation >= 100 && save.faction == 8;
         },
         //chance: (( x^1.5 ) / 2e7))% where x is headstart time in seconds
         excav: 3000
